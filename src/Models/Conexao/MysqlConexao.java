@@ -1,5 +1,7 @@
 package Models.Conexao;
 
+import Models.Conta;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
@@ -12,13 +14,13 @@ public class MysqlConexao implements IConexao {
     public MysqlConexao()
     {
     }
-        public void Salvar(int codigo, String nome, double saldo) {
+        public void Salvar(Conta conta) {
         try
         {
             Class.forName(DRIVER);
             Connection conn = DriverManager.getConnection(URL, USUARIO, SENHA);
             Statement stmt = conn.createStatement();
-            String query = "INSERT INTO CONTA (codigo, nome, saldo) VALUES(" + codigo+ " , '" + nome + "' , " + saldo + ")";
+            String query = "INSERT INTO CONTA (codigo, nome, saldo) VALUES(" + conta.getNumero()+ " , '" + conta.getNome() + "' , " + conta.getSaldo() + ")";
             stmt.executeUpdate(query);
             stmt.close();
             System.out.println(" Conta cadastrada.");}

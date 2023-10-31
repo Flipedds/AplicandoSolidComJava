@@ -1,5 +1,7 @@
 package Models.Conexao;
 
+import Models.Conta;
+
 public interface IConexao {
-    void Salvar(int codigo, String nome, double saldo);
+    void Salvar(Conta conta);
 }
